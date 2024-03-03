@@ -1,0 +1,37 @@
+<!-- Author: Hasmat.Noorani | Date: 28-12-23 -->
+<configuration status="DEBUG">
+
+    <!-- Define a property for the base path -->
+    <property name="logBasePath" value="C:/Hasmat/Rhombus_Modules/leave/backend/leaveManager/src/main/resources/logs/" />
+
+    <!-- File Appender -->
+    <appender name="leaveManagerAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logBasePath}leave.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logBasePath}leave.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- Keep 7 days of logs -->
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{dd.MM.yyyy HH:mm:ss} %-5p %t [%C{1}]: %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Console Appender -->
+    <appender name="leaveManagerConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{dd.MM.yyyy HH:mm:ss} %-5p %t [%C{1}]: %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Logger Configuration -->
+    <logger name="com.hasmat.leaveManager" level="info">
+        <appender-ref ref="leaveManagerAppender" />
+    </logger>
+
+    <!-- Console Logger Configuration -->
+    <root level="info">
+        <appender-ref ref="leaveManagerConsoleAppender" />
+    </root>
+
+</configuration>
